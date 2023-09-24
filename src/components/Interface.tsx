@@ -57,7 +57,7 @@ const Interface = () => {
         </div> */}
         <div>
           {" "}
-          {/* {results.length > 0 &&
+          {results.length > 0 &&
             results.map((result, idx) => {
               return (
                 <div key={idx}>
@@ -65,7 +65,7 @@ const Interface = () => {
                   {result.similarity_score.toString()}
                 </div>
               );
-            })} */}
+            })}
         </div>
       </div>
     </div>
