@@ -70,7 +70,7 @@ const Interface = () => {
             <h2 className="font-bold">Most relevant documents:</h2>
             <div className="mb-3 container border border-black rounded-xl p-3 flex flex-col gap-3 w-full">
               {" "}
-              {results.length > 0 ? (
+              {results && results.length > 0 ? (
                 results.map((result, idx) => {
                   return (
                     <div key={idx} className="">
@@ -95,7 +95,7 @@ const Interface = () => {
             </div>
             <h2 className="font-bold">Most relevant answer from the texts:</h2>
             <div className="container border border-black rounded-xl p-3 flex flex-col gap-3 w-full">
-              {sentences.length > 0 ? (
+              {sentences && sentences.length > 0 ? (
                 sentences.map((result, idx) => {
                   return (
                     <div key={idx} className="">
