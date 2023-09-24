@@ -84,7 +84,20 @@ const Interface = () => {
                       </a>
                       <p>
                         Confidence Score:{" "}
-                        {(result.similarity_score * 100).toFixed(3).toString()}%
+                        <span
+                          className={`${
+                            result.similarity_score * 100 < 33
+                              ? "text-red-700"
+                              : result.similarity_score * 100 > 66
+                              ? "text-green-700"
+                              : "text-yellow-700"
+                          }`}
+                        >
+                          {(result.similarity_score * 100)
+                            .toFixed(3)
+                            .toString()}
+                          %
+                        </span>
                       </p>
                     </div>
                   );
