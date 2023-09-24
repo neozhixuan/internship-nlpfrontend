@@ -4,7 +4,9 @@ const Interface = () => {
   const [load, setLoad] = useState(false);
   const [error, setError] = useState("");
   const [input, setInput] = useState("");
-  const [results, setResults] = useState([]);
+  const [results, setResults] = useState([
+    { document: "Document Name", similarity_score: 1 },
+  ]);
   const queryService = new QueryService();
   const sendQuery = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -26,7 +28,7 @@ const Interface = () => {
   };
 
   return (
-    <div className="container w-[50%] mx-[25%]">
+    <div className="container w-[70%] mx-[15%]">
       <div className="flex flex-col gap-5">
         {" "}
         <form className="w-full" onSubmit={(e) => sendQuery(e)}>
@@ -55,14 +57,24 @@ const Interface = () => {
             <p>Results loaded.</p>
           )}
         </div> */}
-        <div>
+        <div className="container border border-black rounded-xl p-3 flex flex-col gap-3 w-full">
           {" "}
           {results.length > 0 &&
             results.map((result, idx) => {
               return (
-                <div key={idx}>
-                  {result.document.toString()} -{" "}
-                  {result.similarity_score.toString()}
+                <div key={idx} className="">
+                  <a
+                    className="font-bold"
+                    href={`/${result.document.toString()}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {result.document.toString()}
+                  </a>
+                  <p>
+                    Confidence Score:{" "}
+                    {(result.similarity_score * 100).toFixed(3).toString()}%
+                  </p>
                 </div>
               );
             })}
