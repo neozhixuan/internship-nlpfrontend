@@ -23,8 +23,8 @@ const Interface = () => {
 
         if (data) {
           console.log(data);
-          setResults(data["results"]);
-          setSentences(data["sentences"]);
+          setResults(data["results"]["similarities"]);
+          setSentences(data["results"]["sentences"]);
         } else {
           setError("Something occurred");
         }
