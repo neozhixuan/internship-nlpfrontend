@@ -1,31 +1,21 @@
-# Create React App
+# NLP Pipeline for Multi-Document Search
 
-This directory is a brief example of a [Create React App](https://github.com/facebook/create-react-app) site that can be deployed to Vercel with zero configuration.
+## Introduction
+This repo aims to utilise different feature engineering techniques to maximise the accuracy of obtaining the most relevant documents in a corpus in relation to a query given by the user.
 
-## Deploy Your Own
+## Pipeline
+![image](https://github.com/neozhixuan/internship-nlpfrontend/assets/79783660/2ce7cc19-6e85-42c6-9868-82a1b1a630c8)
 
-Deploy your own Create React App project with Vercel.
+The model firstly pre-processes both the query as well as the documents into bag-of-words, using scikitlearn tools.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/create-react-app&template=create-react-app)
+It then finds the cosine similarity using 2 feature engineering algorithms (LSI and TF-IDF) and are weighed (evenly atm) to form a combined cosine similarity score.
 
-_Live Example: https://create-react-template.vercel.app/_
+Afterwards, it attempts to implement pointwise ranking to rank the scores based on historic data to give a set of best solutions.
 
-## Available Scripts
+## To-dos
+- Find the best weights for cosine similarity of TF-IDF and LSI algorithms
+- Do more pre-processing for the user's query
+- Use natural language to shape the sentence answers to answer the query
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes. You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.
-
-It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+## Credits
+- Practical Natural Language Processing - Sowmya Vajjala et. al (O'Reilly Publications)
