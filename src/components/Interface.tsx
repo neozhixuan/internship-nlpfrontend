@@ -33,8 +33,10 @@ const Interface = () => {
           console.log(data);
           setResults(data["results"]["similarities"]);
           setSentences(data["results"]["sentences"]);
+          setLoad(false);
         } else {
           setError("Something occurred");
+          setLoad(false);
         }
       })
       .catch((e) => {
