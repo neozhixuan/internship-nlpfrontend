@@ -1,7 +1,7 @@
 # NLP Pipeline for Multi-Document Search
 
 ## Introduction
-This repo aims to utilise different feature engineering techniques to maximise the accuracy of obtaining the most relevant documents in a corpus in relation to a query given by the user.
+This repo aims to utilise different feature engineering techniques to maximise the accuracy of obtaining the most relevant documents in a corpus in relation to a query given by the user. This is done in the backend (private repository).
 
 ## Pipeline
 ![image](https://github.com/neozhixuan/internship-nlpfrontend/assets/79783660/2ce7cc19-6e85-42c6-9868-82a1b1a630c8)
