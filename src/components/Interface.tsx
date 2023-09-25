@@ -13,9 +13,17 @@ const Interface = () => {
     { document: "Document Name", similarity_score: 1 },
   ]);
   const queryService = new QueryService();
+
+  const triggerLoad = (e: React.FormEvent<HTMLFormElement>) => {
+    console.log("Check");
+    setError("Loading");
+    console.log("Check2");
+    sendQuery(e);
+    setError("");
+  };
   const sendQuery = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
     setLoad(true);
+    e.preventDefault();
     queryService
       .sendQuery(input)
       .then((response) => {
@@ -31,8 +39,8 @@ const Interface = () => {
       })
       .catch((e) => {
         setError(e);
+        setLoad(false);
       });
-    setLoad(false);
   };
 
   const githubIcon = (
@@ -49,7 +57,7 @@ const Interface = () => {
   return (
     <div className="container w-[70%] mx-[15%]  h-full">
       <div className="flex flex-col gap-5 h-full">
-        <form className="w-full" onSubmit={(e) => sendQuery(e)}>
+        <form className="w-full" onSubmit={(e) => triggerLoad(e)}>
           <p>Input your query:</p>
           <div className="flex flex-row gap-5">
             <input
@@ -65,7 +73,7 @@ const Interface = () => {
               Submit
             </button>
           </div>
-        </form>
+        </form>{" "}
         {/* <div>
           {load ? (
             <p>Loading...</p>
@@ -75,6 +83,7 @@ const Interface = () => {
             <p>Results loaded.</p>
           )}
         </div> */}
+        {error.length > 0 && <p>{error}</p>}
         {!load ? (
           <div>
             <h2 className="font-bold">Most relevant documents:</h2>
