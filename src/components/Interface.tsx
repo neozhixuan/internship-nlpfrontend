@@ -97,7 +97,7 @@ const Interface = () => {
                     <div key={idx} className="">
                       <a
                         className="font-bold"
-                        href={`/${result.document.toString()}`}
+                        href={`/files/${result.document.toString()}`}
                         target="_blank"
                         rel="noreferrer"
                       >
