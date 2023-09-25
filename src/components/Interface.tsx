@@ -133,9 +133,16 @@ const Interface = () => {
                 sentences.map((result, idx) => {
                   return (
                     <div key={idx} className="">
-                      <p>
-                        {idx + 1}: {result.sentence.toString()}
-                      </p>
+                      {idx == 0 ? (
+                        <p>
+                          Best match from {results[0].document}:{" "}
+                          {result.sentence.toString()}
+                        </p>
+                      ) : (
+                        <p>
+                          {idx}: {result.sentence.toString()}
+                        </p>
+                      )}
                     </div>
                   );
                 })
