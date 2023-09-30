@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div
-      className="w-screen h-screen p-5 pt-10"
+      className="w-screen min-h-screen p-5 pt-10"
       style={{ backgroundColor: "#F5F5DC" }}
     >
       <Interface />

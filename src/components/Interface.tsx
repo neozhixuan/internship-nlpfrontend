@@ -59,6 +59,14 @@ const Interface = () => {
   return (
     <div className="container w-[70%] mx-[15%]  h-full">
       <div className="flex flex-col gap-5 h-full">
+        <div className="border border-black p-3">
+          <h1 className="text-xl font-black">Employment Pass Query Bot</h1>
+          <h2 className="text-lg font-bold">
+            Enter your queries and our bot will look through all the employment
+            pass information to find the most relevant article and information
+            for you!
+          </h2>
+        </div>
         <form className="w-full" onSubmit={(e) => triggerLoad(e)}>
           <p>Input your query:</p>
           <div className="flex flex-row gap-5">
@@ -76,15 +84,6 @@ const Interface = () => {
             </button>
           </div>
         </form>{" "}
-        {/* <div>
-          {load ? (
-            <p>Loading...</p>
-          ) : error ? (
-            <p>{error}</p>
-          ) : (
-            <p>Results loaded.</p>
-          )}
-        </div> */}
         {error.length > 0 && <p>{error}</p>}
         {!load ? (
           <div>
@@ -133,14 +132,17 @@ const Interface = () => {
                 sentences.map((result, idx) => {
                   return (
                     <div key={idx} className="">
-                      {idx == 0 ? (
+                      {idx === 0 ? (
                         <p>
-                          Best match from {results[0].document}:{" "}
+                          <span className="font-bold">
+                            Best match from "{results[0].document}":{" "}
+                          </span>
                           {result.sentence.toString()}
                         </p>
                       ) : (
                         <p>
-                          {idx}: {result.sentence.toString()}
+                          <span className="font-bold">{idx}: </span>
+                          {result.sentence.toString()}
                         </p>
                       )}
                     </div>
@@ -152,10 +154,10 @@ const Interface = () => {
             </div>
           </div>
         ) : (
-          <div>Loading...</div>
+          <div>Loading... (cold starts will take ~1 minute)</div>
         )}
         <a
-          className="flex justify-center mt-auto"
+          className="flex justify-center"
           href="https://github.com/neozhixuan/internship-nlpfrontend/tree/main"
           target="_blank"
           rel="noreferrer"
