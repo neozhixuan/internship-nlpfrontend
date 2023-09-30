@@ -12,6 +12,9 @@ const Interface = () => {
   const [results, setResults] = useState([
     { document: "Document Name", similarity_score: 1 },
   ]);
+  const [gpt, setGpt] = useState(
+    "This is an answer generated using OpenAI API."
+  );
   const queryService = new QueryService();
 
   const triggerLoad = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,6 +36,7 @@ const Interface = () => {
           console.log(data);
           setResults(data["results"]["similarities"]);
           setSentences(data["results"]["sentences"]);
+          setGpt(data["results"]["answer"]);
           setLoad(false);
         } else {
           setError("Something occurred");
@@ -79,6 +83,7 @@ const Interface = () => {
             <button
               type="submit"
               className="bg-white px-3 py-1 border border-black rounded-lg"
+              disabled={load}
             >
               Submit
             </button>
@@ -100,7 +105,7 @@ const Interface = () => {
                         target="_blank"
                         rel="noreferrer"
                       >
-                        {result.document.toString()}
+                        {idx + 1}: {result.document.toString()}
                       </a>
                       <p>
                         Confidence Score:{" "}
@@ -119,6 +124,12 @@ const Interface = () => {
                           %
                         </span>
                       </p>
+                      {idx === 0 && (
+                        <div className="border border-black rounded-lg p-3 italic">
+                          <p className="font-bold">GPT read this and says:</p>
+                          <p>{gpt}</p>
+                        </div>
+                      )}
                     </div>
                   );
                 })
@@ -126,7 +137,9 @@ const Interface = () => {
                 <p>No documents found</p>
               )}
             </div>
-            <h2 className="font-bold">Most relevant answer from the texts:</h2>
+            <h2 className="font-bold">
+              Most relevant text result from the texts:
+            </h2>
             <div className="container border border-black rounded-xl p-3 flex flex-col gap-3 w-full">
               {sentences && sentences.length > 0 ? (
                 sentences.map((result, idx) => {
