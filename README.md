@@ -10,7 +10,9 @@ The model firstly pre-processes both the query as well as the documents into bag
 
 It then finds the cosine similarity using 2 feature engineering algorithms (LSI and TF-IDF) and are weighed (evenly atm) to form a combined cosine similarity score.
 
-Afterwards, it attempts to implement pointwise ranking to rank the scores based on historic data to give a set of best solutions.
+Afterwards, it attempts to implement pointwise ranking to rank the scores based on historic data to give a set of best solutions. (WIP)
+
+The website is integrated with OpenAI's Completion prompt and utilises prompt engineering to give you the most relevant result in the top file.
 
 ## To-dos
 - Find the best weights for cosine similarity of TF-IDF and LSI algorithms
