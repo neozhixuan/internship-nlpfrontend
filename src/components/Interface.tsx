@@ -98,6 +98,7 @@ const Interface = () => {
             <input
               className="px-2 w-full border border-black rounded-lg"
               type="text"
+              placeholder="e.g. How long is a work permit valid for?"
               value={input} // Use the state value
               onChange={(e) => setInput(e.target.value)} // Update state on input change
             />
