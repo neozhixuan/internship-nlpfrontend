@@ -2,6 +2,7 @@ import { useState } from "react";
 import { QueryService } from "../services/query";
 const Interface = () => {
   const [load, setLoad] = useState(false);
+  const [loadGPT, setLoadGPT] = useState(false);
   const [error, setError] = useState("");
   const [input, setInput] = useState("");
   const [sentences, setSentences] = useState([
@@ -12,9 +13,7 @@ const Interface = () => {
   const [results, setResults] = useState([
     { document: "Document Name", similarity_score: 1 },
   ]);
-  const [gpt, setGpt] = useState(
-    "This is an answer generated using OpenAI API."
-  );
+  const [gpt, setGpt] = useState("Empty");
   const queryService = new QueryService();
 
   const triggerLoad = (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,10 +32,9 @@ const Interface = () => {
         const data = response.data;
 
         if (data) {
-          console.log(data);
+          gpt !== "Empty" && setGpt("Empty");
           setResults(data["results"]["similarities"]);
           setSentences(data["results"]["sentences"]);
-          setGpt(data["results"]["answer"]);
           setLoad(false);
         } else {
           setError("Something occurred");
@@ -60,6 +58,29 @@ const Interface = () => {
     </svg>
   );
 
+  const gptCallHandler = () => {
+    console.log("Check");
+    setLoadGPT(true);
+    console.log("Check2");
+    queryService
+      .sendGPT(input, results[0]["document"])
+      .then((response) => {
+        const data = response.data;
+
+        if (data) {
+          const data = response.data;
+          console.log(data);
+          setGpt(data["answer"]);
+        } else {
+          setGpt("There was an error with the OpenAI API. Try again later.");
+        }
+      })
+      .catch((e) => {
+        setError(e);
+      });
+    setLoadGPT(false);
+  };
+
   return (
     <div className="container w-[70%] mx-[15%]  h-full">
       <div className="flex flex-col gap-5 h-full">
@@ -82,7 +103,11 @@ const Interface = () => {
             />
             <button
               type="submit"
-              className="bg-white px-3 py-1 border border-black rounded-lg"
+              className={`bg-white px-3 py-1 border rounded-lg ${
+                load
+                  ? "border-gray-400 text-gray-400"
+                  : "border-black text-black"
+              }`}
               disabled={load}
             >
               Submit
@@ -124,12 +149,31 @@ const Interface = () => {
                           %
                         </span>
                       </p>
-                      {idx === 0 && (
-                        <div className="border border-black rounded-lg p-3 italic">
-                          <p className="font-bold">GPT read this and says:</p>
-                          <p>{gpt}</p>
-                        </div>
-                      )}
+                      {idx === 0 &&
+                        (gpt === "Empty" ? (
+                          loadGPT ? (
+                            <p>Loading...</p>
+                          ) : (
+                            <button
+                              className={`bg-white px-3 py-1 border rounded-lg ${
+                                results[0]["document"] === "Document Name"
+                                  ? "border-gray-400 text-gray-400"
+                                  : "border-black text-black"
+                              }`}
+                              onClick={gptCallHandler}
+                              disabled={
+                                results[0]["document"] === "Document Name"
+                              }
+                            >
+                              Generate an AI response from this text!
+                            </button>
+                          )
+                        ) : (
+                          <div className="border border-black rounded-lg p-3 italic">
+                            <p className="font-bold">GPT read this and says:</p>
+                            <p>{gpt}</p>
+                          </div>
+                        ))}
                     </div>
                   );
                 })

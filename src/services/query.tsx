@@ -10,4 +10,7 @@ export class QueryService {
       //   }
     );
   }
+  sendGPT(input: string, top_doc: string) {
+    return http.post("/api/gpt_call", { query: input, top_doc: top_doc });
+  }
 }
