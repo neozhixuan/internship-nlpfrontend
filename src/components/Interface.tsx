@@ -84,12 +84,23 @@ const Interface = () => {
   return (
     <div className="container w-[70%] mx-[15%]  h-full">
       <div className="flex flex-col gap-5 h-full">
-        <div className="border border-black p-3">
-          <h1 className="text-xl font-black">Employment Pass Query Bot</h1>
-          <h2 className="text-lg font-bold">
-            Enter your queries and our bot will look through all the employment
-            pass information to find the most relevant article and information
-            for you!
+        <div
+          className="border border-black p-3"
+          style={{ backgroundColor: "#536872" }}
+        >
+          <h1
+            className="text-xl font-black text-white text-center"
+            style={{ color: "#F5F5DC" }}
+          >
+            Migrant Worker Work Permit Bot
+          </h1>
+          <h2
+            className="mt-2 text-lg font-bold text-center"
+            style={{ color: "#F5F5DC" }}
+          >
+            Enter your queries and our bot will look through all the MW WP
+            information to find the most relevant article and information for
+            you!
           </h2>
         </div>
         <form className="w-full" onSubmit={(e) => triggerLoad(e)}>
