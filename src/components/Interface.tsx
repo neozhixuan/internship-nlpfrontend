@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { QueryService } from "../services/query";
+
 const Interface = () => {
   const [load, setLoad] = useState(false);
   const [loadGPT, setLoadGPT] = useState(false);
@@ -33,7 +34,13 @@ const Interface = () => {
 
         if (data) {
           gpt !== "Empty" && setGpt("Empty");
-          setResults(data["results"]["similarities"]);
+          const similarities = data["results"]["similarities"];
+          if (similarities.length > 0) {
+            setResults(similarities);
+          } else {
+            const res = { document: "No results found.", similarity_score: 1 };
+            setResults((prevResults) => [res]);
+          }
           setSentences(data["results"]["sentences"]);
           setLoad(false);
         } else {
@@ -223,7 +230,7 @@ const Interface = () => {
             </div>
           </div>
         ) : (
-          <div>Loading... (cold starts will take ~1 minute)</div>
+          <div>Loading... (cold starts will take 10-15 seconds)</div>
         )}
         <a
           className="flex justify-center"
