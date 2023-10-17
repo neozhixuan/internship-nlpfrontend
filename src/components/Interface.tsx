@@ -108,7 +108,7 @@ const Interface = () => {
             Enter your queries and our bot will look through all the Work Permit
             information on the{" "}
             <a
-              className="text-blue-700 no-underline"
+              className="text-blue-200 no-underline"
               href="https://www.mom.gov.sg/"
             >
               MOM Website
