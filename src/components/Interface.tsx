@@ -99,15 +99,21 @@ const Interface = () => {
             className="text-xl font-black text-white text-center"
             style={{ color: "#F5F5DC" }}
           >
-            Migrant Worker Work Permit Bot
+            Work Permit Bot
           </h1>
           <h2
             className="mt-2 text-lg font-bold text-center"
             style={{ color: "#F5F5DC" }}
           >
-            Enter your queries and our bot will look through all the MW WP
-            information to find the most relevant article and information for
-            you!
+            Enter your queries and our bot will look through all the Work Permit
+            information on the{" "}
+            <a
+              className="text-blue-700 no-underline"
+              href="https://www.mom.gov.sg/"
+            >
+              MOM Website
+            </a>{" "}
+            to find the most relevant article and information for you!
           </h2>
         </div>
         <form className="w-full" onSubmit={(e) => triggerLoad(e)}>
