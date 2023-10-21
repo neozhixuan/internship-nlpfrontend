@@ -4,6 +4,7 @@ import { QueryService } from "../services/query";
 const Interface = () => {
   const [load, setLoad] = useState(false);
   const [loadGPT, setLoadGPT] = useState(false);
+  const [bert, setBert] = useState("");
   const [error, setError] = useState("");
   const [input, setInput] = useState("");
   const [sentences, setSentences] = useState([
@@ -35,10 +36,13 @@ const Interface = () => {
         if (data) {
           gpt !== "Empty" && setGpt("Empty");
           const similarities = data["results"]["similarities"];
+          const bert = data["results"]["bertanswer"];
           if (similarities.length > 0) {
+            setBert(bert);
             setResults(similarities);
           } else {
             const res = { document: "No results found.", similarity_score: 1 };
+            setBert("");
             setResults((prevResults) => [res]);
           }
           setSentences(data["results"]["sentences"]);
@@ -174,6 +178,10 @@ const Interface = () => {
                           %
                         </span>
                       </p>
+                      <div className="border border-black rounded-lg p-3 italic my-2">
+                        <p className="font-bold">Answer:</p>
+                        <p>{bert}</p>
+                      </div>
                       {idx === 0 &&
                         (gpt === "Empty" ? (
                           loadGPT ? (
