@@ -179,12 +179,12 @@ const Interface = () => {
                           %
                         </span>
                       </p>
-                      {idx === 0 && (
+                      {/* {idx === 0 && (
                         <div className="border border-black rounded-lg p-3 italic my-2">
                           <p className="font-bold">Answer:</p>
                           <p>{bert}</p>
                         </div>
-                      )}
+                      )} */}
                       {idx === 0 &&
                         (gpt === "Empty" ? (
                           loadGPT ? (
