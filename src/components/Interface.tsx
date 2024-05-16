@@ -87,6 +87,7 @@ const Interface = () => {
         }
       })
       .catch((e) => {
+        console.log(e);
         setError(e);
       });
     setLoadGPT(false);

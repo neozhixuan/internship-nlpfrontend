@@ -5,9 +5,6 @@ export class QueryService {
     return http.post(
       "/api/similarity",
       { query: input }
-      //   {
-      //     withCredentials: true,
-      //   }
     );
   }
   sendGPT(input: string, top_doc: string) {
