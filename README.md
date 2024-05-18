@@ -1,4 +1,5 @@
 # NLP Pipeline for Multi-Document Search
+[![NLP Video](https://img.youtube.com/vi/55ATMhMrqYQ/0.jpg)](https://www.youtube.com/watch?v=55ATMhMrqYQ)
 
 ## Introduction
 This repo aims to utilise different feature engineering techniques to maximise the accuracy of obtaining the most relevant documents in a corpus in relation to a query given by the user. This is done in the backend (private repository).
